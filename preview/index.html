@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preview | Diego Pincheira Ibanez</title>
+  <meta name="description" content="Preview HTML para GitHub Pages de Diego Pincheira Ibanez">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f4efe7;
+      --bg-2: #e8f0e2;
+      --surface: #ffffff;
+      --text: #1d2433;
+      --muted: #5f6d87;
+      --brand: #176087;
+      --brand-2: #f28b30;
+      --line: #dbe2ee;
+      --shadow: 0 14px 40px rgba(21, 37, 62, 0.12);
+      --radius: 18px;
+      --hero-text: #f6faff;
+      --hero-muted: #b8dff2;
+      --hero-body: #e8f7ff;
+      --chip-bg: #f7fbff;
+      --chip-text: #1f3d5a;
+      --toggle-bg: rgba(255, 255, 255, 0.14);
+      --toggle-border: rgba(255, 255, 255, 0.42);
+      --toggle-text: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-1: #12171f;
+      --bg-2: #1a2230;
+      --surface: #1a2230;
+      --text: #dbe7ff;
+      --muted: #99abc9;
+      --brand: #76c2f4;
+      --brand-2: #ffb86a;
+      --line: #2e3a51;
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
+      --hero-text: #f2f9ff;
+      --hero-muted: #b9ddf5;
+      --hero-body: #d4ecff;
+      --chip-bg: #222d40;
+      --chip-text: #d6e6ff;
+      --toggle-bg: rgba(13, 18, 26, 0.48);
+      --toggle-border: rgba(194, 225, 255, 0.42);
+      --toggle-text: #ecf6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      background:
+        radial-gradient(1200px 800px at -10% -10%, rgba(242, 139, 48, 0.18), transparent 60%),
+        radial-gradient(1200px 900px at 110% 120%, rgba(23, 96, 135, 0.2), transparent 55%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      min-height: 100%;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 18px 52px;
+      animation: fade-up 650ms ease;
+    }
+
+    .hero {
+      background: linear-gradient(140deg, #0f2a3f 0%, #176087 70%, #2a7ea8 100%);
+      color: var(--hero-text);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: var(--shadow);
+      padding: 34px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .hero {
+      background: linear-gradient(140deg, #09121d 0%, #0f2c46 64%, #1c4f73 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      right: -70px;
+      top: -100px;
+      background: radial-gradient(circle, rgba(242, 139, 48, 0.6), rgba(242, 139, 48, 0.1) 65%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--hero-muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 10px 0 0;
+      font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: var(--hero-body);
+      max-width: 70ch;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border: 1px solid var(--toggle-border);
+      background: var(--toggle-bg);
+      color: var(--toggle-text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 130ms ease, opacity 130ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: reveal 500ms ease forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 90ms; }
+    .card:nth-child(2) { animation-delay: 170ms; }
+    .card:nth-child(3) { animation-delay: 250ms; }
+    .card:nth-child(4) { animation-delay: 330ms; }
+
+    .about { grid-column: span 7; }
+    .repo { grid-column: span 5; }
+    .skills { grid-column: span 8; }
+    .contact { grid-column: span 4; }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+      color: var(--brand);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    li + li {
+      margin-top: 7px;
+    }
+
+    .chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      border: 1px solid #cad7ea;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      background: var(--chip-bg);
+      color: var(--chip-text);
+      font-weight: 500;
+    }
+
+    [data-theme="dark"] .chip {
+      border-color: #30415d;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-link {
+      display: block;
+      text-decoration: none;
+      color: #f6fbff;
+      background: #176087;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 500;
+      transition: transform 140ms ease, background 140ms ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      background: #114761;
+    }
+
+    .contact-link:nth-child(2) {
+      background: #c5412e;
+    }
+
+    .contact-link:nth-child(2):hover {
+      background: #9f3223;
+    }
+
+    .contact-link:nth-child(3) {
+      background: #1e1f24;
+    }
+
+    .contact-link:nth-child(3):hover {
+      background: #121318;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    @media (max-width: 900px) {
+      .about,
+      .repo,
+      .skills,
+      .contact {
+        grid-column: span 12;
+      }
+
+      .hero p {
+        max-width: 100%;
+      }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">Dark mode</button>
+      <p class="kicker">HTML Preview for GitHub Pages</p>
+      <h1>Holaa :D soy Diego Pincheira Ibanez!</h1>
+      <p>
+        Ingeniero de Software y Vision Computacional. Esta es una propuesta en formato
+        HTML para ver una version mas visual de tu pagina personal.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Contenido principal">
+      <article class="card about">
+        <h2>Sobre mi</h2>
+        <ul>
+          <li>Ingeniero de Software/Vision Computacional.</li>
+          <li>Buscando nuevos desafios profesionales.</li>
+          <li>Juego en PCs desde que tengo memoria.</li>
+          <li>Toco flauta traversa desde los 7 anos.</li>
+          <li>Siempre aprendiendo cosas nuevas.</li>
+          <li>Me encantan los hobbies nuevos.</li>
+          <li>Me encantaria tener un pinguino de mascota.</li>
+          <li>Me gusta ensenar, pero no quiero ser profe.</li>
+        </ul>
+      </article>
+
+      <article class="card repo">
+        <h2>Que encontraras en este repo</h2>
+        <ul>
+          <li>Proyectos de universidad.</li>
+          <li>Mi fork de PokeEmerald en desarrollo.</li>
+          <li>Mi BOT de Discord de MyL (inconcluso).</li>
+        </ul>
+      </article>
+
+      <article class="card skills">
+        <h2>Competencias tecnicas</h2>
+        <div class="chip-wrap" role="list" aria-label="Competencias">
+          <span class="chip" role="listitem">Python</span>
+          <span class="chip" role="listitem">C++</span>
+          <span class="chip" role="listitem">Jupyter Notebook</span>
+          <span class="chip" role="listitem">Docker</span>
+          <span class="chip" role="listitem">Git</span>
+          <span class="chip" role="listitem">GitHub</span>
+          <span class="chip" role="listitem">VS Code</span>
+        </div>
+      </article>
+
+      <article class="card contact">
+        <h2>Contacto</h2>
+        <div class="contact-grid">
+          <a class="contact-link" href="https://www.linkedin.com/in/diego-pincheira-iba%C3%B1ez/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="contact-link" href="mailto:diegopincheiraibanez@gmail.com">Gmail</a>
+          <a class="contact-link" href="https://github.com/diegopincheiraib" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">Preview HTML separado. Tu pagina principal actual sigue en /index.md</p>
+  </main>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById("theme-toggle");
+      var storageKey = "site-theme";
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var savedTheme = localStorage.getItem(storageKey);
+      var theme = savedTheme || (prefersDark ? "dark" : "light");
+
+      function applyTheme(nextTheme) {
+        root.setAttribute("data-theme", nextTheme);
+        toggle.textContent = nextTheme === "dark" ? "Light mode" : "Dark mode";
+        toggle.setAttribute("aria-label", nextTheme === "dark" ? "Activar modo claro" : "Activar modo oscuro");
+      }
+
+      applyTheme(theme);
+
+      toggle.addEventListener("click", function () {
+        theme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        applyTheme(theme);
+        localStorage.setItem(storageKey, theme);
+      });
+    })();
+  </script>
+</body>
+</html>
